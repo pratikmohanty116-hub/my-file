@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India 2025 — Weather, Geology & Economy</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0c0f;
+  --bg2: #111318;
+  --bg3: #181b22;
+  --surface: #1e2130;
+  --surface2: #252a3a;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.14);
+  --text: #e8eaf2;
+  --text2: #8b90a8;
+  --text3: #4a4f68;
+  --accent: #f0c040;
+  --accent2: #e87040;
+  --blue: #4a90d9;
+  --green: #3dba80;
+  --red: #e04a4a;
+  --purple: #9b70e8;
+  --teal: #2dcbbb;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── BACKGROUND GRID ── */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 200;
+  height: 62px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(11,12,15,0.82);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  gap: 0;
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  margin-right: auto;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo .flag {
+  width: 26px; height: 18px;
+  display: inline-flex;
+  flex-direction: column;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.flag-stripe { flex:1; }
+.flag-stripe.saffron { background:#FF9933; }
+.flag-stripe.white { background:#fff; position:relative; display:flex; align-items:center; justify-content:center; }
+.flag-stripe.green { background:#138808; }
+.flag-stripe.white::after {
+  content:'';
+  width:6px; height:6px;
+  border-radius:50%;
+  border: 1px solid #000080;
+  position:absolute;
+}
+
+.nav-pills {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-pills a {
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.nav-pills a:hover { color: var(--accent); background: rgba(240,192,64,0.08); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 24px 60px;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.hero-glow.a { width:500px;height:500px;background:rgba(240,192,64,0.06);top:-100px;left:-150px; }
+.hero-glow.b { width:400px;height:400px;background:rgba(232,112,64,0.05);bottom:-50px;right:-100px; }
+.hero-glow.c { width:300px;height:300px;background:rgba(74,144,217,0.05);top:30%;left:60%; }
+
+.hero-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.hero-title .india { color: var(--accent); }
+.hero-title .year {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.45em;
+  color: var(--text2);
+  letter-spacing: 0em;
+  font-weight: 400;
+  display: block;
+}
+
+.hero-sub {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.2rem;
+  color: var(--text2);
+  max-width: 560px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.hero-stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px 28px;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.hero-stat:first-child { border-radius: 12px 0 0 12px; }
+.hero-stat:last-child { border-radius: 0 12px 12px 0; }
+
+.hero-stat .val {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -1px;
+  display: block;
+  line-height: 1;
+}
+
+.hero-stat .lbl {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: block;
+}
+
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text3);
+  text-transform: uppercase;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.scroll-cue .arrow {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, var(--text3), transparent);
+}
+
+@keyframes bounce {
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(6px); }
+}
+
+/* ── SECTION BASE ── */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-tag::after {
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(to right, rgba(240,192,64,0.3), transparent);
+  max-width: 120px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.1em;
+  font-weight: 300;
+}
+
+.section-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.05rem;
+  color: var(--text2);
+  max-width: 600px;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 56px;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2), transparent);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────
+   WEATHER SECTION
+───────────────────────────────────── */
+#weather { background: var(--bg); }
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 48px;
+}
+
+.weather-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, background 0.25s;
+  cursor: default;
+}
+
+.weather-card::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:3px;
+  background: var(--card-accent, var(--accent));
+}
+
+.weather-card:hover {
+  background: var(--surface);
+  border-color: var(--border2);
+}
+
+.wc-region {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+
+.wc-zone {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.wc-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+.wc-stat:last-of-type { border:none; }
+.wc-key { color: var(--text2); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; }
+.wc-val { color: var(--text); font-weight:600; font-size:0.85rem; }
+
+.wc-note {
+  margin-top:14px;
+  font-family:'Crimson Pro',serif;
+  font-size:0.88rem;
+  color:var(--text3);
+  font-style:italic;
+  line-height:1.5;
+}
+
+/* timeline bar */
+.timeline-bar {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 48px;
+  overflow: hidden;
+}
+
+.timeline-bar::before {
+  content:'2025 Climate Timeline';
+  position:absolute;
+  top:16px; left:32px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--text3);
+}
+
+.timeline-months {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px;
+  margin-top: 28px;
+}
+
+.month-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.month-label {
+  font-family:'IBM Plex Mono',monospace;
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing:0.05em;
+}
+
+.month-bar {
+  width: 100%;
+  border-radius: 4px;
+  position: relative;
+  min-height: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.month-bar:hover { opacity:0.75; }
+
+.month-bar[title]:hover::after {
+  content: attr(title);
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--surface2);
+  color:var(--text);
+  font-size:0.65rem;
+  font-family:'IBM Plex Mono',monospace;
+  padding:4px 8px;
+  border-radius:4px;
+  white-space:nowrap;
+  border:1px solid var(--border2);
+  z-index:10;
+}
+
+.month-tag {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.55rem;
+  color:var(--accent);
+  text-align:center;
+  line-height:1.2;
+}
+
+/* extreme weather banner */
+.extreme-banner {
+  background: linear-gradient(135deg, rgba(224,74,74,0.1), rgba(232,112,64,0.08));
+  border: 1px solid rgba(224,74,74,0.25);
+  border-radius: 12px;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.eb-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--red);
+  letter-spacing: -2px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.eb-text h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.eb-text p {
+  font-family:'Crimson Pro',serif;
+  font-size:0.95rem;
+  color:var(--text2);
+  font-weight:300;
+  line-height:1.6;
+}
+
+.eb-badges {
+  margin-left:auto;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  flex-shrink:0;
+}
+
+.badge {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.08em;
+  padding:5px 12px;
+  border-radius:20px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.badge.red { background:rgba(224,74,74,0.15); color:#e07070; border:1px solid rgba(224,74,74,0.3); }
+.badge.orange { background:rgba(232,112,64,0.15); color:#e87850; border:1px solid rgba(232,112,64,0.3); }
+.badge.yellow { background:rgba(240,192,64,0.12); color:var(--accent); border:1px solid rgba(240,192,64,0.25); }
+
+/* ─────────────────────────────────────
+   MAP SECTION
+───────────────────────────────────── */
+#map-section { background: var(--bg2); }
+
+.map-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+.map-container {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  background: var(--bg);
+  padding: 4px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.map-tab {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.68rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:7px 16px;
+  border-radius:5px;
+  border:none;
+  background:transparent;
+  color:var(--text2);
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.map-tab.active {
+  background:var(--surface2);
+  color:var(--accent);
+}
+
+#india-svg {
+  width:100%;
+  max-height:500px;
+}
+#india-svg path {
+  stroke:#0b0c0f;
+  stroke-width:1;
+  cursor:pointer;
+  transition: all 0.2s;
+}
+#india-svg path:hover {
+  stroke:#fff;
+  stroke-width:1.5;
+  filter: brightness(1.2);
+}
+#india-svg path.selected {
+  stroke:var(--accent);
+  stroke-width:2;
+}
+
+.map-legend {
+  margin-top:16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 16px;
+}
+
+.leg-item {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;
+  color:var(--text2);
+  letter-spacing:0.04em;
+}
+
+.leg-dot {
+  width:10px;height:10px;
+  border-radius:2px;
+  flex-shrink:0;
+}
+
+/* Sidebar panel */
+.detail-panel {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  position:sticky;
+  top:80px;
+}
+
+.panel-card {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:22px;
+  transition:border-color 0.2s;
+}
+
+.panel-card.active { border-color:var(--border2); }
+
+.pc-header {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.pc-dot {
+  width:10px;height:10px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.pc-title {
+  font-size:0.95rem;
+  font-weight:700;
+  color:var(--text);
+  letter-spacing:-0.2px;
+}
+
+.pc-region {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--text3);
+  margin-bottom:14px;
+}
+
+.pc-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:6px 0;
+  border-bottom:1px solid var(--border);
+  font-size:0.8rem;
+}
+.pc-row:last-child { border:none; }
+.pc-key { color:var(--text2); font-family:'IBM Plex Mono',monospace; font-size:0.7rem; }
+.pc-val { color:var(--text); font-weight:600; }
+
+.pc-note {
+  margin-top:10px;
+  font-family:'Crimson Pro',serif;
+  font-size:0.88rem;
+  color:var(--text3);
+  font-style:italic;
+  line-height:1.5;
+}
+
+/* ─────────────────────────────────────
+   GEOLOGY SECTION
+───────────────────────────────────── */
+#geology { background:var(--bg); }
+
+.mineral-grid {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:2px;
+  margin-bottom:48px;
+}
+
+.mineral-card {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:24px 20px;
+  transition: all 0.25s;
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+
+.mineral-card::after {
+  content:'';
+  position:absolute;
+  bottom:0; left:0;
+  width:0; height:2px;
+  background:var(--mc-color, var(--accent));
+  transition:width 0.4s;
+}
+.mineral-card:hover { background:var(--surface); }
+.mineral-card:hover::after { width:100%; }
+
+.mc-icon {
+  font-size:1.6rem;
+  margin-bottom:12px;
+  display:block;
+}
+
+.mc-mineral {
+  font-size:1rem;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:4px;
+  letter-spacing:-0.2px;
+}
+
+.mc-location {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.1em;
+  color:var(--text3);
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.mc-bar-wrap {
+  height:3px;
+  background:var(--border);
+  border-radius:2px;
+  margin-bottom:8px;
+  overflow:hidden;
+}
+
+.mc-bar {
+  height:100%;
+  border-radius:2px;
+  background:var(--mc-color, var(--accent));
+  animation:barIn 1.2s cubic-bezier(.16,1,.3,1) both;
+}
+
+@keyframes barIn { from{width:0 !important;} }
+
+.mc-stat {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.68rem;
+  color:var(--text2);
+}
+
+/* Belt chart */
+.belt-chart {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:32px;
+  margin-bottom:32px;
+}
+
+.belt-row {
+  display:grid;
+  grid-template-columns:200px 1fr auto;
+  gap:16px;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+}
+.belt-row:last-child { border:none; }
+
+.belt-name {
+  font-size:0.85rem;
+  font-weight:600;
+  color:var(--text);
+}
+
+.belt-sub {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;
+  color:var(--text3);
+  margin-top:2px;
+  letter-spacing:0.04em;
+}
+
+.belt-bar-track {
+  height:8px;
+  background:var(--border);
+  border-radius:4px;
+  overflow:hidden;
+}
+
+.belt-bar-fill {
+  height:100%;
+  border-radius:4px;
+  animation:barIn 1.4s cubic-bezier(.16,1,.3,1) both;
+}
+
+.belt-pct {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.8rem;
+  font-weight:500;
+  color:var(--text2);
+  white-space:nowrap;
+}
+
+/* ─────────────────────────────────────
+   ECONOMY SECTION
+───────────────────────────────────── */
+#economy { background:var(--bg2); }
+
+.economy-layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-bottom:48px;
+}
+
+.state-gdp-list {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+}
+
+.sgdp-title {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--text3);
+  margin-bottom:20px;
+}
+
+.sgdp-row {
+  display:grid;
+  grid-template-columns:24px 1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+.sgdp-row:last-child { border:none; }
+
+.sgdp-rank {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  color:var(--text3);
+  text-align:center;
+}
+
+.sgdp-state { font-size:0.88rem; font-weight:600; color:var(--text); }
+.sgdp-sector {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  color:var(--text3);
+  margin-top:2px;
+}
+
+.sgdp-gdp {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.8rem;
+  color:var(--accent);
+  font-weight:500;
+  text-align:right;
+}
+
+/* Sector donut simulation */
+.sector-panel {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+}
+
+.sector-ring {
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  margin:0 auto 24px;
+  position:relative;
+  background: conic-gradient(
+    #4a90d9 0% 16%,
+    #3dba80 16% 44%,
+    #f0c040 44% 60%,
+    #e87040 60% 75%,
+    #9b70e8 75% 87%,
+    #e04a4a 87% 100%
+  );
+}
+
+.sector-ring::after {
+  content:'';
+  position:absolute;
+  inset:30%;
+  background:var(--bg3);
+  border-radius:50%;
+}
+
+.sector-ring .ring-label {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:1;
+  font-size:0.65rem;
+  font-family:'IBM Plex Mono',monospace;
+  color:var(--text3);
+  text-align:center;
+  line-height:1.3;
+}
+
+.ring-label .big { font-size:1.3rem; font-weight:800; color:var(--text); letter-spacing:-0.5px; font-family:'Syne',sans-serif; }
+
+.sector-legend {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.sl-row {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:0.82rem;
+}
+
+.sl-dot {
+  width:10px; height:10px;
+  border-radius:2px;
+  flex-shrink:0;
+}
+
+.sl-label { color:var(--text2); flex:1; }
+.sl-val { font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--text); font-weight:500; }
+
+/* renewable highlight */
+.renew-row {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:2px;
+  margin-top:8px;
+}
+
+.renew-card {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:24px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.2s;
+}
+.renew-card::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:2px;
+  background:var(--rc-color);
+}
+.renew-card:hover { background:var(--surface); }
+.renew-card .rv { font-size:1.8rem; font-weight:800; color:var(--text); letter-spacing:-1px; line-height:1; margin-bottom:4px; }
+.renew-card .ri { font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--text3); }
+.renew-card .rd { font-family:'Crimson Pro',serif; font-size:0.85rem; color:var(--text2); margin-top:4px; }
+
+/* ─────────────────────────────────────
+   INSIGHTS SECTION
+───────────────────────────────────── */
+#insights { background:var(--bg); }
+
+.insights-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:2px;
+}
+
+.insight-card {
+  background:var(--bg3);
+  border:1px solid var(--border);
+  padding:32px 28px;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.25s;
+}
+.insight-card:hover { background:var(--surface); border-color:var(--border2); }
+
+.ic-num {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:0.2em;
+  color:var(--text3);
+  margin-bottom:20px;
+  text-transform:uppercase;
+}
+
+.ic-title {
+  font-size:1.1rem;
+  font-weight:700;
+  color:var(--text);
+  letter-spacing:-0.3px;
+  margin-bottom:10px;
+  line-height:1.3;
+}
+
+.ic-body {
+  font-family:'Crimson Pro',serif;
+  font-size:0.95rem;
+  color:var(--text2);
+  line-height:1.75;
+  font-weight:300;
+}
+
+.ic-accent {
+  position:absolute;
+  bottom:0; right:0;
+  font-size:4rem;
+  font-weight:800;
+  color:rgba(240,192,64,0.04);
+  letter-spacing:-2px;
+  line-height:1;
+  pointer-events:none;
+}
+
+/* ── FOOTER ── */
+footer {
+  position:relative;
+  z-index:1;
+  border-top:1px solid var(--border);
+  padding:40px 32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+footer .f-left {
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  color:var(--text3);
+  text-transform:uppercase;
+}
+
+footer .f-right {
+  font-family:'Crimson Pro',serif;
+  font-size:0.9rem;
+  color:var(--text3);
+  font-style:italic;
+}
+
+/* ── ANIMATIONS ── */
+.reveal {
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-d1 { transition-delay:.1s; }
+.reveal-d2 { transition-delay:.2s; }
+.reveal-d3 { transition-delay:.3s; }
+.reveal-d4 { transition-delay:.4s; }
+.reveal-d5 { transition-delay:.5s; }
+.reveal-d6 { transition-delay:.6s; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px) {
+  .weather-grid { grid-template-columns:1fr 1fr; }
+  .mineral-grid { grid-template-columns:1fr 1fr; }
+  .map-layout { grid-template-columns:1fr; }
+  .economy-layout { grid-template-columns:1fr; }
+  .insights-grid { grid-template-columns:1fr; }
+  .renew-row { grid-template-columns:1fr; }
+  .belt-row { grid-template-columns:140px 1fr auto; }
+  .detail-panel { position:static; }
+}
+
+@media(max-width:600px) {
+  .weather-grid { grid-template-columns:1fr; }
+  .mineral-grid { grid-template-columns:1fr; }
+  .hero-stats { flex-direction:column; width:100%; }
+  .hero-stat { border-radius:8px !important; }
+  .nav-pills { display:none; }
+  .container { padding:0 16px; }
+  .belt-row { grid-template-columns:1fr; gap:6px; }
+  .timeline-months { gap:2px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="flag">
+      <div class="flag-stripe saffron"></div>
+      <div class="flag-stripe white"></div>
+      <div class="flag-stripe green"></div>
+    </div>
+    India Atlas 2025
+  </a>
+  <ul class="nav-pills">
+    <li><a href="#weather">Weather</a></li>
+    <li><a href="#map-section">Map</a></li>
+    <li><a href="#geology">Geology</a></li>
+    <li><a href="#economy">Economy</a></li>
+    <li><a href="#insights">Insights</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow a"></div>
+  <div class="hero-glow b"></div>
+  <div class="hero-glow c"></div>
+
+  <div class="hero-eyebrow">India 2025 · Complete Atlas</div>
+
+  <h1 class="hero-title">
+    <span class="india">India</span><br>
+    Decoded
+    <span class="year">2025 Edition</span>
+  </h1>
+
+  <p class="hero-sub">Weather extremes, geological wealth, and economic vitality — a comprehensive data portrait of the world's most populous nation.</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="val">331</span>
+      <span class="lbl">Extreme weather days</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val">110%</span>
+      <span class="lbl">Annual rainfall vs avg</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val">~$4T</span>
+      <span class="lbl">GDP 2025 estimate</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val">20%</span>
+      <span class="lbl">Geology explored</span>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Explore</span>
+    <div class="arrow"></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════
+     WEATHER SECTION
+══════════════════════════════════ -->
+<section id="weather">
+  <div class="container">
+    <div class="section-tag">01 — Climate & Weather</div>
+    <h2 class="section-title reveal">A Year of <em>Extremes</em></h2>
+    <p class="section-desc reveal reveal-d1">India faced extreme weather on 331 of 334 days in 2025 — a record collapse of seasonal boundaries with floods, heatwaves, drought, and cyclones striking all corners simultaneously.</p>
+
+    <!-- 6-zone weather cards -->
+    <div class="weather-grid">
+      <div class="weather-card reveal reveal-d1" style="--card-accent:#E04A4A">
+        <div class="wc-region">Northwest India</div>
+        <div class="wc-zone">Arid / Semi-Arid</div>
+        <div class="wc-stat"><span class="wc-key">Peak temp</span><span class="wc-val" style="color:#E04A4A">46.4°C (Barmer)</span></div>
+        <div class="wc-stat"><span class="wc-key">Anomaly</span><span class="wc-val">+5–8°C above normal</span></div>
+        <div class="wc-stat"><span class="wc-key">Extreme days</span><span class="wc-val">311 (highest in India)</span></div>
+        <div class="wc-stat"><span class="wc-key">Rainfall</span><span class="wc-val">30–70% deficit (Aug)</span></div>
+        <div class="wc-note">Feb 2025 — India's first-ever winter heatwave recorded in Rajasthan. Groundwater extraction: 16.74B m³/yr.</div>
+      </div>
+
+      <div class="weather-card reveal reveal-d2" style="--card-accent:#EF9F27">
+        <div class="wc-region">North / Gangetic Plains</div>
+        <div class="wc-zone">Sub-tropical Continental</div>
+        <div class="wc-stat"><span class="wc-key">Delhi peak temp</span><span class="wc-val" style="color:#EF9F27">40°C+ (April)</span></div>
+        <div class="wc-stat"><span class="wc-key">Anomaly</span><span class="wc-val">+5°C above seasonal</span></div>
+        <div class="wc-stat"><span class="wc-key">Cold wave onset</span><span class="wc-val">Nov 7 (early)</span></div>
+        <div class="wc-stat"><span class="wc-key">Crop damage</span><span class="wc-val">Wheat, Lychee, Mango</span></div>
+        <div class="wc-note">Bihar, UP, Punjab suffered 30–70% below-normal rainfall in August — severe drought-like conditions.</div>
+      </div>
+
+      <div class="weather-card reveal reveal-d3" style="--card-accent:#D85A30">
+        <div class="wc-region">Central India</div>
+        <div class="wc-zone">Tropical Savanna</div>
+        <div class="wc-stat"><span class="wc-key">May rainfall</span><span class="wc-val" style="color:#D85A30">Rainiest May ever</span></div>
+        <div class="wc-stat"><span class="wc-key">Extreme days %</span><span class="wc-val">99% (Mar–May)</span></div>
+        <div class="wc-stat"><span class="wc-key">Rainfall increase</span><span class="wc-val">Maharashtra +trend</span></div>
+        <div class="wc-stat"><span class="wc-key">Events</span><span class="wc-val">Flash floods, heatwaves</span></div>
+        <div class="wc-note">Central India witnessed its rainiest May ever, followed by a sharp reversal into drought by August.</div>
+      </div>
+
+      <div class="weather-card reveal reveal-d4" style="--card-accent:#534AB7">
+        <div class="wc-region">South India</div>
+        <div class="wc-zone">Tropical Wet / Monsoon</div>
+        <div class="wc-stat"><span class="wc-key">Monsoon onset</span><span class="wc-val" style="color:#9b70e8">May 24 Kerala</span></div>
+        <div class="wc-stat"><span class="wc-key">Earliest in</span><span class="wc-val">Over a decade</span></div>
+        <div class="wc-stat"><span class="wc-key">October rainfall</span><span class="wc-val">13th wettest since 1901</span></div>
+        <div class="wc-stat"><span class="wc-key">Mumbai monsoon</span><span class="wc-val">In 2 days (not 10)</span></div>
+        <div class="wc-note">Fastest-ever monsoon advance to Mumbai. Andhra Pradesh — 38 extreme weather days in Jan–Feb alone.</div>
+      </div>
+
+      <div class="weather-card reveal reveal-d5" style="--card-accent:#3DBA80">
+        <div class="wc-region">Northeast India</div>
+        <div class="wc-zone">Subtropical Humid</div>
+        <div class="wc-stat"><span class="wc-key">Extreme days</span><span class="wc-val" style="color:#3dba80">275 (2nd highest)</span></div>
+        <div class="wc-stat"><span class="wc-key">Rainfall trend</span><span class="wc-val">Declining long-term</span></div>
+        <div class="wc-stat"><span class="wc-key">August deficit</span><span class="wc-val">30–70% Arunachal</span></div>
+        <div class="wc-stat"><span class="wc-key">Forest loss</span><span class="wc-val">Fastest in India</span></div>
+        <div class="wc-note">Cherrapunji — one of Earth's wettest spots — yet NE faces declining average rainfall with extreme spikes.</div>
+      </div>
+
+      <div class="weather-card reveal reveal-d6" style="--card-accent:#4A90D9">
+        <div class="wc-region">Himalayan Region</div>
+        <div class="wc-zone">Alpine / Cold Desert</div>
+        <div class="wc-stat"><span class="wc-key">Snowpack 2025</span><span class="wc-val" style="color:#4a90d9">Below normal</span></div>
+        <div class="wc-stat"><span class="wc-key">HP extreme days</span><span class="wc-val">50 (worst state)</span></div>
+        <div class="wc-stat"><span class="wc-key">Altitude heatwave</span><span class="wc-val">J&K, Ladakh</span></div>
+        <div class="wc-stat"><span class="wc-key">Livestock killed</span><span class="wc-val">954 (HP 2025)</span></div>
+        <div class="wc-note">Arctic sea ice in March 2025 was lowest on record. Himalayan heatwaves now reach higher altitudes than ever.</div>
+      </div>
+    </div>
+
+    <!-- Timeline bar -->
+    <div class="timeline-bar reveal">
+      <div class="timeline-months">
+        <div class="month-col">
+          <div class="month-bar" style="height:60px;background:#EF9F27;" title="Jan: Hottest Jan since 1901 in some regions"></div>
+          <div class="month-label">JAN</div>
+          <div class="month-tag">Heat</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:80px;background:#E04A4A;" title="Feb: Hottest Feb on record; first winter heatwave ever"></div>
+          <div class="month-label">FEB</div>
+          <div class="month-tag">Record</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:70px;background:#D85A30;" title="Mar-May: 99% days with extreme events; pre-monsoon deaths 3x 2022"></div>
+          <div class="month-label">MAR</div>
+          <div class="month-tag">Extremes</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:75px;background:#D85A30;" title="Apr: Delhi 40°C+; Barmer 46.4°C peak"></div>
+          <div class="month-label">APR</div>
+          <div class="month-tag">Heatwave</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:90px;background:#4A90D9;" title="May: Wettest May since 1901 (126.7mm); earliest Kerala monsoon in decade"></div>
+          <div class="month-label">MAY</div>
+          <div class="month-tag">Wettest</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:85px;background:#3DBA80;" title="Jun: SW Monsoon 108% of LPA across India"></div>
+          <div class="month-label">JUN</div>
+          <div class="month-tag">Monsoon</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:88px;background:#3DBA80;" title="Jul: Heavy floods in multiple states; landslides in HP"></div>
+          <div class="month-label">JUL</div>
+          <div class="month-tag">Floods</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:55px;background:#EF9F27;" title="Aug: Sharp reversal — 19% India in drought; Bihar/UP/Punjab 30-70% deficit"></div>
+          <div class="month-label">AUG</div>
+          <div class="month-tag">Drought</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:65px;background:#4A90D9;" title="Sep: Post-monsoon above normal (111% LPA)"></div>
+          <div class="month-label">SEP</div>
+          <div class="month-tag">Wet</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:72px;background:#534AB7;" title="Oct: 13th wettest Oct in South since 1901; Bay cyclones"></div>
+          <div class="month-label">OCT</div>
+          <div class="month-tag">Cyclone</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:60px;background:#888;" title="Nov: Coldwaves in 13 states — earliest spread ever"></div>
+          <div class="month-label">NOV</div>
+          <div class="month-tag">Cold</div>
+        </div>
+        <div class="month-col">
+          <div class="month-bar" style="height:50px;background:#888;" title="Dec: Winter anomaly -0.10°C (near-normal end)"></div>
+          <div class="month-label">DEC</div>
+          <div class="month-tag">Winter</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extreme banner -->
+    <div class="extreme-banner reveal">
+      <div class="eb-number">331</div>
+      <div class="eb-text">
+        <h3>Days with extreme weather out of 334 in 2025</h3>
+        <p>India's shrinking window of "normal" weather — up from 295 days in 2024 and 292 in 2022. Over 4,419 deaths and massive crop losses recorded. The collapse of seasonal boundaries marks a new era of year-round climate extremes.</p>
+      </div>
+      <div class="eb-badges">
+        <span class="badge red">+1.17°C Winter anomaly</span>
+        <span class="badge orange">110% Annual rainfall</span>
+        <span class="badge yellow">19% India in drought (Aug)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════
+     INTERACTIVE MAP SECTION
+══════════════════════════════════ -->
+<section id="map-section">
+  <div class="container">
+    <div class="section-tag">02 — Regional Map</div>
+    <h2 class="section-title reveal">India <em>Region by Region</em></h2>
+    <p class="section-desc reveal reveal-d1">Click any region on the map to explore its weather conditions, mineral resources, and economic profile for 2025.</p>
+
+    <div class="map-layout">
+      <!-- Map -->
+      <div class="map-container reveal">
+        <div class="map-tabs">
+          <button class="map-tab active" onclick="switchMapTab('weather',this)">Weather</button>
+          <button class="map-tab" onclick="switchMapTab('geology',this)">Geology</button>
+          <button class="map-tab" onclick="switchMapTab('economy',this)">Economy</button>
+        </div>
+
+        <svg id="india-svg" viewBox="60 -10 460 600" xmlns="http://www.w3.org/2000/svg">
+          <!-- Himalayan Region -->
+          <path id="r-himalaya" d="M165,30 L210,20 L250,28 L290,32 L310,50 L300,68 L270,72 L230,70 L200,72 L175,65 L160,50 Z" fill="#888" onclick="selectRegion('himalaya')"/>
+          <!-- Northwest -->
+          <path id="r-northwest" d="M85,60 L160,50 L175,65 L180,100 L190,140 L185,175 L160,195 L130,190 L100,180 L80,155 L70,120 L75,85 Z" fill="#E04A4A" onclick="selectRegion('northwest')"/>
+          <!-- North/Gangetic -->
+          <path id="r-north" d="M180,65 L290,55 L310,70 L315,100 L310,135 L290,148 L255,155 L225,150 L195,145 L185,120 L183,95 Z" fill="#EF9F27" onclick="selectRegion('north')"/>
+          <!-- Northeast -->
+          <path id="r-northeast" d="M310,55 L370,45 L415,55 L430,80 L420,120 L405,140 L380,148 L355,145 L330,140 L315,120 L310,95 Z" fill="#3DBA80" onclick="selectRegion('northeast')"/>
+          <!-- East -->
+          <path id="r-east" d="M295,148 L355,148 L375,165 L370,200 L360,230 L340,255 L315,265 L295,255 L280,230 L278,200 L285,170 Z" fill="#4A90D9" onclick="selectRegion('east')"/>
+          <!-- Central -->
+          <path id="r-central" d="M155,175 L185,178 L220,155 L285,155 L305,170 L315,200 L310,240 L290,270 L260,290 L225,295 L195,285 L165,265 L145,240 L135,210 L140,185 Z" fill="#D85A30" onclick="selectRegion('central')"/>
+          <!-- South -->
+          <path id="r-south" d="M165,265 L200,290 L225,298 L265,295 L295,275 L315,255 L330,275 L325,310 L315,345 L305,380 L290,410 L265,440 L240,460 L215,470 L195,460 L175,435 L160,400 L150,360 L148,320 L152,285 Z" fill="#534AB7" onclick="selectRegion('south')"/>
+
+          <!-- Labels -->
+          <text x="195" y="55" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-family="IBM Plex Mono,monospace" pointer-events="none">HIMALAYA</text>
+          <text x="128" y="130" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-family="IBM Plex Mono,monospace" pointer-events="none">NW</text>
+          <text x="248" y="108" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-family="IBM Plex Mono,monospace" pointer-events="none">NORTH</text>
+          <text x="368" y="95" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-family="IBM Plex Mono,monospace" pointer-events="none">NE</text>
+          <text x="325" y="205" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-family="IBM Plex Mono,monospace" pointer-events="none">EAST</text>
+          <text x="225" y="230" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-family="IBM Plex Mono,monospace" pointer-events="none">CENTRAL</text>
+          <text x="238" y="385" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.7)" font-family="IBM Plex Mono,monospace" pointer-events="none">SOUTH</text>
+        </svg>
+
+        <div class="map-legend" id="map-legend">
+          <div class="leg-item"><div class="leg-dot" style="background:#E04A4A"></div>Extreme heat / Arid NW</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#EF9F27"></div>Heat stress N</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#D85A30"></div>Flood-drought Central</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#534AB7"></div>Wet monsoon South</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#3DBA80"></div>Humid tropical NE</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#4A90D9"></div>Cyclone coast East</div>
+          <div class="leg-item"><div class="leg-dot" style="background:#888"></div>Alpine Himalaya</div>
+        </div>
+      </div>
+
+      <!-- Detail Panel -->
+      <div class="detail-panel">
+        <div class="panel-card active" id="detail-main">
+          <div class="pc-header">
+            <div class="pc-dot" id="detail-dot" style="background:#f0c040"></div>
+            <div class="pc-title" id="detail-title">Select a Region</div>
+          </div>
+          <div class="pc-region" id="detail-sub">Click any region on the map to explore its data</div>
+          <div id="detail-rows">
+            <div class="pc-row"><span class="pc-key">Regions</span><span class="pc-val">7 zones mapped</span></div>
+            <div class="pc-row"><span class="pc-key">States covered</span><span class="pc-val">28 + 8 UTs</span></div>
+            <div class="pc-row"><span class="pc-key">Data layers</span><span class="pc-val">Weather · Geo · Economy</span></div>
+          </div>
+          <div class="pc-note" id="detail-note">India spans 3.3 million km² across 6 distinct climate zones, 5 mineral belts, and a $4 trillion economy.</div>
+        </div>
+
+        <div class="panel-card" id="extra-card" style="display:none">
+          <div id="extra-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════
+     GEOLOGY SECTION
+══════════════════════════════════ -->
+<section id="geology">
+  <div class="container">
+    <div class="section-tag">03 — Geological Resources</div>
+    <h2 class="section-title reveal">Mineral <em>Wealth</em> of India</h2>
+    <p class="section-desc reveal reveal-d1">Only 20% of India's geological wealth has been explored. The nation holds the world's 4th largest coal reserves, Asia's largest iron ore deposits, and critical minerals vital for the energy transition.</p>
+
+    <!-- Mineral cards -->
+    <div class="mineral-grid">
+      <div class="mineral-card reveal reveal-d1" style="--mc-color:#4A90D9">
+        <span class="mc-icon">⛏</span>
+        <div class="mc-mineral">Iron Ore</div>
+        <div class="mc-location">Odisha · Jharkhand · Chhattisgarh</div>
+        <div class="mc-bar-wrap"><div class="mc-bar" style="width:92%;--mc-color:#4A90D9"></div></div>
+        <div class="mc-stat">Asia's largest reserves · $4.5B exports</div>
+      </div>
+      <div class="mineral-card reveal reveal-d2" style="--mc-color:#888">
+        <span class="mc-icon">🪨</span>
+        <div class="mc-mineral">Coal</div>
+        <div class="mc-location">Jharkhand · MP · Odisha · WB</div>
+        <div class="mc-bar-wrap"><div class="mc-bar" style="width:88%;--mc-color:#888"></div></div>
+        <div class="mc-stat">97% in Damodar, Sone, Mahanadi valleys</div>
+      </div>
+      <div class="mineral-card reveal reveal-d3" style="--mc-color:#EF9F27">
+        <span class="mc-icon">🥈</span>
+        <div class="mc-mineral">Bauxite</div>
+        <div class="mc-location">Odisha · Gujarat · Jharkhand</div>
+        <div class="mc-bar-wrap"><div class="mc-bar" style="width:78%;--mc-color:#EF9F27"></div></div>
+        <div class="mc-stat">Self-sufficient; 5th global producer</div>
+      </div>
+      <div class="mineral-card reveal reveal-d4" style="--mc-color:#f0c040">
+        <span class="mc-icon">🪙</span>
+        <div class="mc-mineral">Zinc & Lead</div>
+        <div class="mc-location">Rajasthan (Zawar, Rampura)</div>
+        <div class="mc-bar-wrap"><div class="mc-bar" style="width:70%;--mc-color:#f0c040"></div></div>
+        <div class="mc-stat">Hindustan Zinc — world's 2nd largest</div>
+      </div>
+      <div class="mineral-card reveal reveal-d5" style="--mc-color:#3DBA80">
+        <span class="mc-icon">🔋</span>
+        <div class="mc-mineral">Cobalt Ore</div>
+        <div class="mc-location">Odisha · Rajasthan · HP</div>
+        <div class="mc-bar-wrap"><div class="mc-bar" style="width:45%;--mc-color:#3DBA80"></div></div>
+        <div class="mc-stat">44.9 MT resources — critical for EVs</div>
+      </div>
+      <div class="mineral-card reveal reveal-d6" style="--mc-color:#9b70e8">
+        <span class="mc-icon">☢️</span>
+        <div class="mc-mineral">Thorium & Ilmenite</div>
+        <div class="mc-location">Kerala Coastal Sands</div>
+        <div class="mc-bar-wrap"><div class="mc-bar" style="width:60%;--mc-color:#9b70e8"></div></div>
+        <div class="mc-stat">World's largest thorium reserve</div>
+      </div>
+      <div class="mineral-card reveal reveal-d1" style="--mc-color:#2dcbbb">
+        <span class="mc-icon">💠</span>
+        <div class="mc-mineral">Copper Ore</div>
+        <div class="mc-location">Rajasthan · Jharkhand · MP</div>
+        <div class="mc-bar-wrap"><div class="mc-bar" style="width:38%;--mc-color:#2dcbbb"></div></div>
+        <div class="mc-stat">163.9 MT reserves; mostly unexplored</div>
+      </div>
+      <div class="mineral-card reveal reveal-d2" style="--mc-color:#E04A4A">
+        <span class="mc-icon">💎</span>
+        <div class="mc-mineral">Diamond</div>
+        <div class="mc-location">Panna, Madhya Pradesh</div>
+        <div class="mc-bar-wrap"><div class="mc-bar" style="width:30%;--mc-color:#E04A4A"></div></div>
+        <div class="mc-stat">Only diamond mine in Asia</div>
+      </div>
+    </div>
+
+    <!-- Mineral Belt chart -->
+    <div class="belt-chart reveal">
+      <div class="section-tag" style="margin-bottom:20px">Mineral Belts of India</div>
+      <div class="belt-row">
+        <div><div class="belt-name">NE Peninsular Belt</div><div class="belt-sub">Jharkhand · Odisha · WB</div></div>
+        <div class="belt-bar-track"><div class="belt-bar-fill" style="width:95%;background:#4A90D9"></div></div>
+        <div class="belt-pct">95% · Iron, Coal, Bauxite</div>
+      </div>
+      <div class="belt-row">
+        <div><div class="belt-name">Central Belt</div><div class="belt-sub">MP · Chhattisgarh · Telangana</div></div>
+        <div class="belt-bar-track"><div class="belt-bar-fill" style="width:72%;background:#D85A30"></div></div>
+        <div class="belt-pct">72% · Coal, Diamond, Iron</div>
+      </div>
+      <div class="belt-row">
+        <div><div class="belt-name">Southern Belt</div><div class="belt-sub">Karnataka · Tamil Nadu · Goa</div></div>
+        <div class="belt-bar-track"><div class="belt-bar-fill" style="width:60%;background:#534AB7"></div></div>
+        <div class="belt-pct">60% · Gold, Iron, Chromite</div>
+      </div>
+      <div class="belt-row">
+        <div><div class="belt-name">SW Belt (Kerala)</div><div class="belt-sub">Kerala Coastal + Interior</div></div>
+        <div class="belt-bar-track"><div class="belt-bar-fill" style="width:48%;background:#9b70e8"></div></div>
+        <div class="belt-pct">48% · Thorium, Ilmenite</div>
+      </div>
+      <div class="belt-row">
+        <div><div class="belt-name">NW Belt</div><div class="belt-sub">Rajasthan · Gujarat</div></div>
+        <div class="belt-bar-track"><div class="belt-bar-fill" style="width:55%;background:#E04A4A"></div></div>
+        <div class="belt-pct">55% · Zinc, Gypsum, Petrol</div>
+      </div>
+      <div class="belt-row">
+        <div><div class="belt-name">Himalayan Belt</div><div class="belt-sub">J&K · HP · Uttarakhand</div></div>
+        <div class="belt-bar-track"><div class="belt-bar-fill" style="width:22%;background:#888"></div></div>
+        <div class="belt-pct">22% · Copper, Uranium</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════
+     ECONOMY SECTION
+══════════════════════════════════ -->
+<section id="economy">
+  <div class="container">
+    <div class="section-tag">04 — Economic Profile</div>
+    <h2 class="section-title reveal">India's <em>$4 Trillion</em> Economy</h2>
+    <p class="section-desc reveal reveal-d1">The world's 5th largest economy by nominal GDP, growing at ~6.5% in 2025. Mining contributes 2.3% directly but 10–11% when accounting for downstream industries.</p>
+
+    <div class="economy-layout">
+      <!-- Top states by GDP -->
+      <div class="state-gdp-list reveal">
+        <div class="sgdp-title">State GDP Rankings 2025</div>
+        <div class="sgdp-row">
+          <div class="sgdp-rank">1</div>
+          <div><div class="sgdp-state">Maharashtra</div><div class="sgdp-sector">Finance · IT · Manufacturing</div></div>
+          <div class="sgdp-gdp">~$400B</div>
+        </div>
+        <div class="sgdp-row">
+          <div class="sgdp-rank">2</div>
+          <div><div class="sgdp-state">Tamil Nadu</div><div class="sgdp-sector">Auto · Textiles · IT</div></div>
+          <div class="sgdp-gdp">~$250B</div>
+        </div>
+        <div class="sgdp-row">
+          <div class="sgdp-rank">3</div>
+          <div><div class="sgdp-state">Gujarat</div><div class="sgdp-sector">Petroleum · Chemicals · Textiles</div></div>
+          <div class="sgdp-gdp">~$250B</div>
+        </div>
+        <div class="sgdp-row">
+          <div class="sgdp-rank">4</div>
+          <div><div class="sgdp-state">Karnataka</div><div class="sgdp-sector">IT · Aerospace · Mining</div></div>
+          <div class="sgdp-gdp">~$230B</div>
+        </div>
+        <div class="sgdp-row">
+          <div class="sgdp-rank">5</div>
+          <div><div class="sgdp-state">Uttar Pradesh</div><div class="sgdp-sector">Agriculture · Sugar · Leather</div></div>
+          <div class="sgdp-gdp">~$230B</div>
+        </div>
+        <div class="sgdp-row">
+          <div class="sgdp-rank">6</div>
+          <div><div class="sgdp-state">West Bengal</div><div class="sgdp-sector">Jute · Steel · Trade</div></div>
+          <div class="sgdp-gdp">~$160B</div>
+        </div>
+        <div class="sgdp-row">
+          <div class="sgdp-rank">7</div>
+          <div><div class="sgdp-state">Rajasthan</div><div class="sgdp-sector">Mining · Tourism · Agri</div></div>
+          <div class="sgdp-gdp">~$130B</div>
+        </div>
+        <div class="sgdp-row">
+          <div class="sgdp-rank">8</div>
+          <div><div class="sgdp-state">Kerala</div><div class="sgdp-sector">Tourism · Spices · Remittance</div></div>
+          <div class="sgdp-gdp">~$100B</div>
+        </div>
+      </div>
+
+      <!-- Sector breakdown -->
+      <div class="sector-panel reveal reveal-d2">
+        <div class="sgdp-title">Economic Sectors 2025</div>
+        <div class="sector-ring">
+          <div class="ring-label">
+            <span class="big">~$4T</span>
+            <span>GDP 2025</span>
+          </div>
+        </div>
+        <div class="sector-legend">
+          <div class="sl-row"><div class="sl-dot" style="background:#4a90d9"></div><span class="sl-label">IT & Services</span><span class="sl-val">16%</span></div>
+          <div class="sl-row"><div class="sl-dot" style="background:#3dba80"></div><span class="sl-label">Agriculture</span><span class="sl-val">28%</span></div>
+          <div class="sl-row"><div class="sl-dot" style="background:#f0c040"></div><span class="sl-label">Manufacturing</span><span class="sl-val">16%</span></div>
+          <div class="sl-row"><div class="sl-dot" style="background:#e87040"></div><span class="sl-label">Finance & Trade</span><span class="sl-val">15%</span></div>
+          <div class="sl-row"><div class="sl-dot" style="background:#9b70e8"></div><span class="sl-label">Construction</span><span class="sl-val">12%</span></div>
+          <div class="sl-row"><div class="sl-dot" style="background:#e04a4a"></div><span class="sl-label">Mining + Others</span><span class="sl-val">13%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Renewable & Industry highlights -->
+    <div class="renew-row">
+      <div class="renew-card reveal reveal-d1" style="--rc-color:#3DBA80">
+        <div class="rv">+17.2%</div>
+        <div class="ri">Renewable Energy Output 2025</div>
+        <div class="rd">Coal dependence down 9.5% — India's green shift accelerates</div>
+      </div>
+      <div class="renew-card reveal reveal-d2" style="--rc-color:#4A90D9">
+        <div class="rv">82.31 MT</div>
+        <div class="ri">Crude Steel (Apr–Sep 2025)</div>
+        <div class="rd">India 2nd largest steel producer; $99B equipment sector by 2030</div>
+      </div>
+      <div class="renew-card reveal reveal-d3" style="--rc-color:#f0c040">
+        <div class="rv">3rd</div>
+        <div class="ri">Global Construction Market</div>
+        <div class="rd">India projected world's 3rd largest by 2025; cement demand 451 MT by 2027</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════
+     INSIGHTS SECTION
+══════════════════════════════════ -->
+<section id="insights">
+  <div class="container">
+    <div class="section-tag">05 — Key Insights 2025</div>
+    <h2 class="section-title reveal">What the <em>Data Tells Us</em></h2>
+
+    <div class="insights-grid">
+      <div class="insight-card reveal reveal-d1">
+        <div class="ic-num">01 · Climate</div>
+        <div class="ic-title">The End of Seasonal Predictability</div>
+        <div class="ic-body">India's traditional three-season structure — wet, cool, hot — has collapsed. Cold waves now begin in 13 states simultaneously instead of 2. Heatwaves strike in February. Floods and drought can coexist in the same month across different regions.</div>
+        <div class="ic-accent">01</div>
+      </div>
+      <div class="insight-card reveal reveal-d2">
+        <div class="ic-num">02 · Geology</div>
+        <div class="ic-title">80% of the Wealth is Still Underground</div>
+        <div class="ic-body">Only 20% of India's geological potential has been explored. With 163.9 MT copper reserves, 44.9 MT cobalt ore, and the world's largest thorium deposits, unlocking this wealth could transform India's position in the global critical-minerals race.</div>
+        <div class="ic-accent">02</div>
+      </div>
+      <div class="insight-card reveal reveal-d3">
+        <div class="ic-num">03 · Economy</div>
+        <div class="ic-title">Climate Risk Meets Economic Growth</div>
+        <div class="ic-body">India's 6.5% GDP growth story runs headlong into a climate crisis. Drought-hit agricultural states, flood-damaged infrastructure, and groundwater depletion in key economic zones threaten to erode the gains from manufacturing and renewable energy expansion.</div>
+        <div class="ic-accent">03</div>
+      </div>
+      <div class="insight-card reveal reveal-d4">
+        <div class="ic-num">04 · Energy</div>
+        <div class="ic-title">Renewable Momentum vs Coal Reality</div>
+        <div class="ic-body">Renewable output rose 17.2% while coal dependence fell 9.5% in 2025. Yet coal still dominates India's energy mix. The PLI scheme for specialty steel and $99B construction equipment market signals a demand surge that renewable supply must race to meet.</div>
+        <div class="ic-accent">04</div>
+      </div>
+      <div class="insight-card reveal reveal-d5">
+        <div class="ic-num">05 · Water</div>
+        <div class="ic-title">The Groundwater Crisis</div>
+        <div class="ic-body">Rajasthan alone extracts 16.74 billion cubic metres of groundwater annually. Drought-hit regions face severe depletion while flood regions battle contamination. Nearly half of seasonal rainfall now falls within just 20–30 hours, creating dangerous dry gaps between extreme events.</div>
+        <div class="ic-accent">05</div>
+      </div>
+      <div class="insight-card reveal reveal-d6">
+        <div class="ic-num">06 · Future</div>
+        <div class="ic-title">Critical Minerals & the Green Race</div>
+        <div class="ic-body">India signed agreements with Argentina for lithium, Australia for critical minerals, and Côte d'Ivoire for geological cooperation in 2024–25. With offshore mineral blocks now being auctioned for the first time, India is positioning itself as a global critical-minerals hub for the energy transition era.</div>
+        <div class="ic-accent">06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-left">India Atlas 2025 · Data: IMD, WMO, Ministry of Mines, IBEF, CSE India</div>
+  <div class="f-right">Built with real 2025 climate & economic data</div>
+</footer>
+
+<script>
+/* ── REGION DATA ── */
+const REGIONS = {
+  himalaya: {
+    color:'#888',
+    label:'Himalayan Region',
+    states:'J&K · Ladakh · Himachal Pradesh · Uttarakhand · Sikkim · Arunachal',
+    weather:{ 'Climate Zone':'Alpine / Cold Desert','Peak Temp':'-20°C to 25°C','Extreme Days':'50 (HP — worst state)','Snowpack 2025':'Below normal','Arctic Ice':'March 2025 lowest on record' },
+    geology:{ 'Rock Type':'Himalayan fold mountains','Key Minerals':'Copper, Uranium, Cobalt, Graphite','Mineral Belt':'Himalayan Belt (22% explored)','Special':'Ladakh uranium deposits' },
+    economy:{ 'GDP Est.':'HP ~$25B, UK ~$30B','Top Sector':'Hydropower, Tourism','Key Crops':'Apple, Saffron, Barley','Climate Impact':'954 livestock killed 2025' },
+    wnote:'Himachal Pradesh was the worst-affected state with extreme weather on 50 days.',
+    gnote:'Himalayan belt holds copper, zinc and uranium — strategically critical, mostly unexplored.',
+    enote:'54% of India\'s hydropower potential is in the Himalayas.'
+  },
+  northwest: {
+    color:'#E04A4A',
+    label:'Northwest India',
+    states:'Rajasthan · Punjab · Haryana · Gujarat · Himachal Pradesh',
+    weather:{ 'Climate Zone':'Arid / Semi-Arid','Peak Temp':'46.4°C (Barmer, Apr 8)','Extreme Days':'311 — highest nationally','Anomaly':'+5–8°C above seasonal','Rain Deficit':'30–70% (Punjab, Aug)' },
+    geology:{ 'Rock Type':'Aravalli System + Thar alluvium','Key Minerals':'Zinc, Lead, Gypsum, Rock Salt, Marble','Mineral Belt':'NW Belt — Rajasthan (Zawar mine)','Petroleum':'Gujarat — significant reserves' },
+    economy:{ 'GDP Est.':'Gujarat ~$250B, Raj ~$130B','Top Sector':'Petroleum, Textiles, Zinc smelting','Key Crops':'Wheat, Bajra, Cotton, Groundnut','Water Stress':'16.74B m³ groundwater/yr (Rajasthan)' },
+    wnote:'Feb 25, 2025 — India\'s first-ever winter heatwave. Hottest February on record nationwide.',
+    gnote:'Hindustan Zinc (Rajasthan) is the world\'s 2nd largest integrated zinc producer.',
+    enote:'Gujarat is India\'s #1 petroleum refining state and a major textiles & chemicals hub.'
+  },
+  north: {
+    color:'#EF9F27',
+    label:'North / Gangetic Plains',
+    states:'Uttar Pradesh · Bihar · Delhi · Chandigarh · Uttarakhand',
+    weather:{ 'Climate Zone':'Sub-tropical Continental','Delhi Apr Peak':'40°C+ (5°C above normal)','Bihar Aug Rain':'-30 to -70% deficit','Cold Wave':'From Nov 7 (earliest ever)','Crop Damage':'Wheat, Lychee, Mango' },
+    geology:{ 'Rock Type':'Indo-Gangetic alluvial deposits','Key Minerals':'Limestone, Potash (border areas)','Fossil Fuels':'Coal on Jharkhand borders','Special':'Ganga basin fertile alluvium' },
+    economy:{ 'GDP Est.':'UP ~$230B, Bihar ~$75B','Top Sector':'Agriculture, Sugar, Leather, IT','Key Crops':'Rice, Wheat, Sugarcane, Potato','Importance':'Ganga basin = 40% of India\'s agri' },
+    wnote:'Delhi temperatures exceeded 40°C multiple times in April — 16M+ residents under extreme heat stress.',
+    gnote:'Gangetic plains are primarily alluvial — mineral wealth lies at borders with peninsular India.',
+    enote:'Uttar Pradesh is India\'s most populous state and 5th largest economy by GDP.'
+  },
+  northeast: {
+    color:'#3DBA80',
+    label:'Northeast India',
+    states:'Assam · Meghalaya · Nagaland · Manipur · Mizoram · Tripura · Arunachal · Sikkim',
+    weather:{ 'Climate Zone':'Subtropical Humid / Tropical Wet','Extreme Days':'275 (2nd highest in India)','Rain Trend':'Declining long-term','Aug Deficit':'30–70% Arunachal Pradesh','Forest Loss':'Fastest-accelerating in India' },
+    geology:{ 'Rock Type':'Assam shelf, Shillong Plateau, Eastern Himalayas','Key Minerals':'Petroleum, Coal, Limestone, Sillimanite','Oil Legacy':'Digboi — Asia\'s oldest refinery (est 1889)','Special':'Rich in bamboo and biological diversity' },
+    economy:{ 'GDP Est.':'Assam ~$35B, region ~$75B','Top Sector':'Tea (60% of India\'s output), Petroleum','Key Crops':'Rice, Tea, Jute, Rubber','Special':'Cherrapunji — world\'s wettest place' },
+    wnote:'Despite being among India\'s wettest regions, NE faces long-term declining rainfall with extreme spikes.',
+    gnote:'Assam\'s Digboi field was the first oil well in Asia — NE contributes significantly to India\'s petroleum output.',
+    enote:'Assam produces over 60% of India\'s tea — a crop increasingly threatened by climate variability.'
+  },
+  east: {
+    color:'#4A90D9',
+    label:'East India',
+    states:'West Bengal · Odisha · Jharkhand',
+    weather:{ 'Climate Zone':'Tropical Monsoon / Humid Subtropical','Post-monsoon Rain':'111% of LPA','Cyclone Risk':'High — Bay of Bengal coast','Odisha':'Historically most cyclone-affected','Temperature':'30–40°C; moderate coast' },
+    geology:{ 'Rock Type':'Chota Nagpur Plateau (Archean), Gondwana coalfields','Key Minerals':'Iron ore, Coal, Bauxite, Manganese, Chromite, Copper','Odisha Rank':'#1 mineral producing state (94.89% mineral:GDP ratio)','Jharkhand':'#2 — coal and iron ore hub' },
+    economy:{ 'GDP Est.':'WB ~$160B, Odisha ~$70B, Jharkhand ~$45B','Top Sector':'Steel (Tata, Jamshedpur), Coal, Aluminium','Key Crops':'Rice, Jute, Tea (Darjeeling)','Mining Share':'Odisha mineral production = 8.5% of state GDP' },
+    wnote:'East India\'s Bay of Bengal coast is India\'s most cyclone-prone zone — storms intensify rapidly.',
+    gnote:'The NE Peninsular Belt (Chota Nagpur Plateau) is India\'s richest mineral belt — iron, coal, bauxite, manganese.',
+    enote:'Jamshedpur hosts Tata Steel — one of Asia\'s oldest and largest integrated steel plants.'
+  },
+  central: {
+    color:'#D85A30',
+    label:'Central India',
+    states:'Madhya Pradesh · Chhattisgarh · Maharashtra · Telangana · Goa',
+    weather:{ 'Climate Zone':'Tropical Savanna / Semi-Arid','May 2025':'Rainiest May ever recorded','Extreme Days %':'99% (Mar–May) — near-daily events','Heatwave':'19 states affected','Pattern':'Floods → Drought whiplash' },
+    geology:{ 'Rock Type':'Deccan Plateau basalt, Gondwana coal, Vindhyan sandstone','Key Minerals':'Coal, Diamond (Panna), Iron ore (Bailadila), Manganese','Belt Rank':'2nd largest mineral belt in India','Export':'Bailadila iron ore exported to Japan' },
+    economy:{ 'GDP Est.':'Maharashtra ~$400B (India\'s largest), MP ~$100B','Top Sector':'Automobiles (Pune), IT/Finance (Mumbai), Coal','Key Crops':'Soybean, Cotton, Wheat, Orange (Nagpur)','Special':'Mumbai = India\'s financial capital' },
+    wnote:'Central India went from its rainiest May in history to severe drought conditions within weeks.',
+    gnote:'Chhattisgarh\'s Bailadila hills have one of the highest-grade iron ore deposits globally.',
+    enote:'Maharashtra alone contributes ~10% of India\'s total GDP — home to the Mumbai financial ecosystem.'
+  },
+  south: {
+    color:'#534AB7',
+    label:'South India',
+    states:'Karnataka · Tamil Nadu · Kerala · Andhra Pradesh · Telangana · Goa',
+    weather:{ 'Climate Zone':'Tropical Wet / Monsoon','Monsoon Onset':'May 24 Kerala — earliest in a decade','Mumbai Advance':'2 days (normally 10)','Oct 2025 Rain':'13th wettest since 1901','AP Extreme Days':'38 (Jan–Feb alone)' },
+    geology:{ 'Rock Type':'Dharwar craton (world\'s oldest rocks), Eastern & Western Ghats','Key Minerals':'Gold (Kolar), Iron ore (Bellary), Bauxite, Thorium, Granite, Chromite','Belt':'Southern Belt + SW Belt (Kerala rare earths)','Special':'Dharwar rocks — among Earth\'s oldest at 3.3 billion years' },
+    economy:{ 'GDP Est.':'Karnataka ~$230B, TN ~$250B, Kerala ~$100B','Top Sector':'IT (Bengaluru), Automobiles (Chennai), Tourism (Kerala)','Key Crops':'Rice, Coconut, Coffee, Tea, Spices, Rubber','Special':'Bengaluru — India\'s Silicon Valley; Kerala — highest HDI in India' },
+    wnote:'South India\'s monsoon arrived earliest in a decade — but Andhra Pradesh still saw severe early-year extremes.',
+    gnote:'Kolar Gold Fields (Karnataka) were mined for centuries — now mostly exhausted but historically vital.',
+    enote:'Bengaluru\'s IT ecosystem generates over $50B in software exports annually — India\'s tech engine.'
+  }
+};
+
+let currentMapTab = 'weather';
+let selectedRegion = null;
+
+function selectRegion(id) {
+  selectedRegion = id;
+  const reg = REGIONS[id];
+  const tab = currentMapTab;
+
+  // Update SVG selection
+  document.querySelectorAll('#india-svg path').forEach(p => p.classList.remove('selected'));
+  document.getElementById('r-' + id)?.classList.add('selected');
+
+  // Update detail panel
+  const dot = document.getElementById('detail-dot');
+  const title = document.getElementById('detail-title');
+  const sub = document.getElementById('detail-sub');
+  const rows = document.getElementById('detail-rows');
+  const note = document.getElementById('detail-note');
+  const extra = document.getElementById('extra-card');
+  const extraContent = document.getElementById('extra-content');
+
+  dot.style.background = reg.color;
+  title.textContent = reg.label;
+  sub.textContent = reg.states;
+
+  const data = reg[tab] || reg.weather;
+  const noteKey = tab === 'weather' ? 'wnote' : tab === 'geology' ? 'gnote' : 'enote';
+
+  rows.innerHTML = Object.entries(data).map(([k,v]) =>
+    `<div class="pc-row"><span class="pc-key">${k}</span><span class="pc-val" style="font-size:0.76rem;max-width:160px;text-align:right">${v}</span></div>`
+  ).join('');
+
+  note.textContent = reg[noteKey];
+
+  extra.style.display = 'none';
+}
+
+function switchMapTab(tab, btn) {
+  currentMapTab = tab;
+  document.querySelectorAll('.map-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Update legend
+  const legends = {
+    weather: [
+      {c:'#E04A4A', l:'Extreme heat / Arid NW'},
+      {c:'#EF9F27', l:'Heat stress North'},
+      {c:'#D85A30', l:'Flood-drought Central'},
+      {c:'#534AB7', l:'Wet monsoon South'},
+      {c:'#3DBA80', l:'Humid NE'},
+      {c:'#4A90D9', l:'Cyclone coast East'},
+      {c:'#888',    l:'Alpine Himalaya'},
+    ],
+    geology: [
+      {c:'#E04A4A', l:'NW — Zinc, Lead, Salt'},
+      {c:'#D85A30', l:'Central — Coal, Diamond'},
+      {c:'#4A90D9', l:'East — Iron ore, Coal'},
+      {c:'#534AB7', l:'South — Gold, Thorium'},
+      {c:'#3DBA80', l:'NE — Petroleum'},
+      {c:'#888',    l:'Himalaya — Copper, Uranium'},
+    ],
+    economy: [
+      {c:'#D85A30', l:'Maharashtra — #1 GDP'},
+      {c:'#534AB7', l:'IT powerhouse (South)'},
+      {c:'#4A90D9', l:'Mining & steel (East)'},
+      {c:'#EF9F27', l:'Agriculture hub (North)'},
+      {c:'#3DBA80', l:'Tea & petroleum (NE)'},
+      {c:'#888',    l:'Hydro & tourism (Himalaya)'},
+    ]
+  };
+
+  const leg = document.getElementById('map-legend');
+  leg.innerHTML = legends[tab].map(({c,l}) =>
+    `<div class="leg-item"><div class="leg-dot" style="background:${c}"></div>${l}</div>`
+  ).join('');
+
+  if (selectedRegion) selectRegion(selectedRegion);
+}
+
+/* ── REVEAL ON SCROLL ── */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => io.observe(el));
+
+/* ── HERO IMMEDIATE ── */
+document.querySelector('.hero').querySelectorAll('.reveal').forEach(el => {
+  el.classList.add('visible');
+});
+</script>
+</body>
+</html>
