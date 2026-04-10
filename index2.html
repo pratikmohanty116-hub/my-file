@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pratik Mohanty — Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── THEME TOKENS ─── */
+[data-theme="dark"] {
+  --bg:          #0d0d0f;
+  --bg2:         #131316;
+  --bg3:         #1a1a1f;
+  --surface:     #1e1e25;
+  --surface2:    #252530;
+  --border:      rgba(255,255,255,0.07);
+  --border2:     rgba(255,255,255,0.13);
+  --text:        #e8e6f0;
+  --text2:       #9996b0;
+  --text3:       #5c5a72;
+  --accent:      #7c6af5;
+  --accent2:     #c084fc;
+  --accentRGB:   124,106,245;
+  --gold:        #f0b429;
+  --green:       #34d399;
+  --tag-bg:      rgba(124,106,245,0.12);
+  --tag-color:   #a998f8;
+  --nav-bg:      rgba(13,13,15,0.85);
+  --shadow:      0 4px 40px rgba(0,0,0,0.5);
+  --shadow2:     0 2px 16px rgba(0,0,0,0.4);
+  --hero-grad:   radial-gradient(ellipse at 60% 0%, rgba(124,106,245,0.15) 0%, transparent 60%),
+                 radial-gradient(ellipse at 0% 100%, rgba(192,132,252,0.08) 0%, transparent 50%);
+  --grid-line:   rgba(255,255,255,0.03);
+  --toggle-bg:   #252530;
+  --toggle-knob: #7c6af5;
+  --card-hover:  rgba(124,106,245,0.06);
+  --progress-bg: rgba(255,255,255,0.06);
+}
+
+[data-theme="light"] {
+  --bg:          #f7f5ff;
+  --bg2:         #ede9ff;
+  --bg3:         #e4dfff;
+  --surface:     #ffffff;
+  --surface2:    #f0eeff;
+  --border:      rgba(0,0,0,0.07);
+  --border2:     rgba(0,0,0,0.13);
+  --text:        #1a1730;
+  --text2:       #5e5a80;
+  --text3:       #a09dc0;
+  --accent:      #5b47e8;
+  --accent2:     #9b5de5;
+  --accentRGB:   91,71,232;
+  --gold:        #d97706;
+  --green:       #059669;
+  --tag-bg:      rgba(91,71,232,0.1);
+  --tag-color:   #5b47e8;
+  --nav-bg:      rgba(247,245,255,0.9);
+  --shadow:      0 4px 40px rgba(91,71,232,0.1);
+  --shadow2:     0 2px 16px rgba(91,71,232,0.08);
+  --hero-grad:   radial-gradient(ellipse at 60% 0%, rgba(91,71,232,0.1) 0%, transparent 60%),
+                 radial-gradient(ellipse at 0% 100%, rgba(155,93,229,0.07) 0%, transparent 50%);
+  --grid-line:   rgba(0,0,0,0.04);
+  --toggle-bg:   #e4dfff;
+  --toggle-knob: #5b47e8;
+  --card-hover:  rgba(91,71,232,0.05);
+  --progress-bg: rgba(0,0,0,0.07);
+}
+
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.35s, color 0.35s;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Background grid */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+  transition: background-image 0.35s;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.35s, border-color 0.35s;
+}
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+  background: var(--tag-bg);
+}
+
+/* ─── THEME TOGGLE ─── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.toggle-track {
+  width: 44px; height: 24px;
+  background: var(--toggle-bg);
+  border-radius: 12px;
+  position: relative;
+  border: 1px solid var(--border2);
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 16px; height: 16px;
+  background: var(--toggle-knob);
+  border-radius: 50%;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 0 8px rgba(var(--accentRGB),0.5);
+}
+
+[data-theme="light"] .toggle-knob { transform: translateX(20px); }
+
+.toggle-icon {
+  font-size: 1rem;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ─── MAIN LAYOUT ─── */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 28px 80px;
+}
+
+/* ─── HERO ─── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  padding: 64px 0 80px;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hero-grad);
+  pointer-events: none;
+  border-radius: 24px;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -2px;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--accent);
+  -webkit-text-stroke: 0px;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text2);
+  max-width: 500px;
+  line-height: 1.75;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.hero-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text2);
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 7px 14px;
+  border-radius: 100px;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.contact-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 16px rgba(var(--accentRGB),0.2);
+}
+
+.contact-chip .icon { font-size: 0.85rem; }
+
+/* Avatar area */
+.hero-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar-ring {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 0 0 8px var(--surface), 0 0 0 9px var(--border2), var(--shadow);
+  animation: floatAvatar 4s ease-in-out infinite;
+}
+
+@keyframes floatAvatar {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Dot badge */
+.status-badge {
+  position: absolute;
+  bottom: 10px; right: 10px;
+  width: 20px; height: 20px;
+  background: var(--green);
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 10px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 6px var(--green); }
+  50% { box-shadow: 0 0 20px var(--green), 0 0 6px var(--green); }
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2), transparent);
+  margin: 20px 0 60px;
+}
+
+/* ─── SECTION HEADING ─── */
+.section { margin-bottom: 72px; }
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.section-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─── OBJECTIVE CARD ─── */
+.objective-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 28px 32px;
+  font-size: 1rem;
+  color: var(--text2);
+  line-height: 1.85;
+  font-weight: 300;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.35s, border-color 0.35s;
+}
+
+.objective-card::before {
+  content: '"';
+  position: absolute;
+  top: -10px; left: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem;
+  color: var(--accent);
+  opacity: 0.1;
+  line-height: 1;
+}
+
+/* ─── EDUCATION TABLE ─── */
+.edu-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 28px;
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 0 20px;
+  align-items: center;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.edu-card:hover {
+  border-color: var(--border2);
+  background: var(--card-hover);
+  box-shadow: var(--shadow2);
+  transform: translateX(4px);
+}
+
+.edu-num {
+  width: 48px; height: 48px;
+  background: var(--tag-bg);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.edu-info { min-width: 0; }
+
+.edu-degree {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.edu-board {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text3);
+}
+
+.edu-right { text-align: right; }
+
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+
+.edu-pct {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.edu-pct-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.bar-track {
+  width: 80px; height: 4px;
+  background: var(--progress-bg);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 2px;
+  animation: growBar 1.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes growBar { from { width: 0 !important; } }
+
+/* ─── SKILLS ─── */
+.skills-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 26px;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.35s;
+}
+
+.skill-group:hover {
+  border-color: var(--border2);
+  box-shadow: var(--shadow2);
+}
+
+.skill-group-icon {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.skill-group-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  font-family: 'DM Mono', monospace;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  background: var(--tag-bg);
+  color: var(--tag-color);
+  font-size: 0.76rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(var(--accentRGB),0.15);
+  letter-spacing: 0.03em;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  cursor: default;
+}
+
+.skill-tag:hover {
+  background: rgba(var(--accentRGB),0.2);
+  transform: translateY(-1px);
+}
+
+/* ─── PERSONAL INFO ─── */
+.personal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  transition: background 0.35s, border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.info-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+
+.info-card.wide { grid-column: 1 / -1; }
+
+.info-key {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.63rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 6px;
+}
+
+.info-val {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+/* ─── DECLARATION ─── */
+.declaration-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 30px 32px;
+  transition: background 0.35s;
+}
+
+.declaration-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.8;
+  margin-bottom: 28px;
+  font-style: italic;
+}
+
+.decl-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.decl-fields { display: flex; gap: 40px; flex-wrap: wrap; }
+
+.decl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text3);
+}
+
+.decl-line {
+  width: 100px; height: 1px;
+  background: var(--border2);
+}
+
+.decl-sig {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border2);
+  padding-bottom: 4px;
+  min-width: 160px;
+  text-align: center;
+}
+
+.decl-sig-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 28px;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+
+footer span { color: var(--accent); }
+
+/* ─── MOBILE HAMBURGER ─── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  width: 22px; height: 2px;
+  background: var(--text2);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; left: 0; right: 0;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    backdrop-filter: blur(14px);
+    gap: 4px;
+  }
+  .hamburger { display: flex; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 40px 0 60px;
+    text-align: center;
+  }
+  .hero-eyebrow { justify-content: center; }
+  .hero-contacts { justify-content: center; }
+  .hero-avatar { order: -1; display: flex; justify-content: center; }
+  .avatar-ring { width: 120px; height: 120px; font-size: 2.5rem; }
+
+  h1 { font-size: 2.8rem; letter-spacing: -1px; }
+
+  .edu-card {
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .edu-right {
+    grid-column: 2;
+    text-align: left;
+  }
+  .edu-pct { align-items: flex-start; }
+  .bar-track { width: 100px; }
+
+  main { padding: 80px 18px 60px; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2.2rem; }
+  .edu-card { padding: 18px 16px; gap: 0 14px; }
+  .skills-wrapper { grid-template-columns: 1fr; }
+  .personal-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── REVEAL ANIMATIONS ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Print-friendly */
+@media print {
+  nav, .theme-toggle, .hamburger, body::before { display: none !important; }
+  main { padding-top: 20px; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">PM.</a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#objective">Objective</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#personal">Personal</a></li>
+      <li><a href="#declaration">Declaration</a></li>
+    </ul>
+
+    <div style="display:flex;align-items:center;gap:14px;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="toggle-icon" id="toggleIcon">🌙</span>
+        <div class="toggle-track">
+          <div class="toggle-knob"></div>
+        </div>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Curriculum Vitae · 2025</div>
+      <h1>Pratik<br><em>Mohanty</em></h1>
+      <p class="hero-subtitle">Aspiring educator & technology enthusiast — dedicated to contributing with excellence and growing through every interaction.</p>
+      <div class="hero-contacts">
+        <div class="contact-chip"><span class="icon">✉️</span>wb87820620@gmail.com</div>
+        <div class="contact-chip"><span class="icon">📱</span>Mobile: **********</div>
+        <div class="contact-chip"><span class="icon">📍</span>abc, xyz</div>
+      </div>
+    </div>
+    <div class="hero-avatar">
+      <div class="avatar-ring">PM<div class="status-badge"></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CAREER OBJECTIVE -->
+  <section class="section reveal" id="objective">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Career Objective</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="objective-card reveal reveal-delay-1">
+      To make contribution in the organization with best of my ability and also develop new skills during the interaction to achieve new heights.
+    </div>
+  </section>
+
+  <!-- ACADEMIC QUALIFICATION -->
+  <section class="section reveal" id="education">
+    <div class="section-label">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Academic Qualification</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal reveal-delay-1">
+        <div class="edu-num">1</div>
+        <div class="edu-info">
+          <div class="edu-degree">10<sup>th</sup> Standard</div>
+          <div class="edu-board">BSE, Odisha</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-year">2020</div>
+          <div class="edu-pct">
+            <span class="edu-pct-val">71.83%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:71.83%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-card reveal reveal-delay-2">
+        <div class="edu-num">2</div>
+        <div class="edu-info">
+          <div class="edu-degree">12<sup>th</sup> Standard</div>
+          <div class="edu-board">CHSE, Odisha</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-year">2022</div>
+          <div class="edu-pct">
+            <span class="edu-pct-val">82.83%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:82.83%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-card reveal reveal-delay-3">
+        <div class="edu-num">3</div>
+        <div class="edu-info">
+          <div class="edu-degree">B.Sc.</div>
+          <div class="edu-board">Utkal University</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-year">2025</div>
+          <div class="edu-pct">
+            <span class="edu-pct-val">79.86%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:79.86%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section reveal" id="skills">
+    <div class="section-label">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-wrapper">
+      <div class="skill-group reveal reveal-delay-1">
+        <span class="skill-group-icon">🎓</span>
+        <div class="skill-group-title">Academic & Teaching</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Strong Subject Knowledge</span>
+          <span class="skill-tag">Student Mentoring</span>
+          <span class="skill-tag">Academic Support</span>
+          <span class="skill-tag">Classroom Management</span>
+          <span class="skill-tag">Active Learning</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Patience</span>
+          <span class="skill-tag">Technology in Classes</span>
+        </div>
+      </div>
+
+      <div class="skill-group reveal reveal-delay-2">
+        <span class="skill-group-icon">💻</span>
+        <div class="skill-group-title">Computer Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MS Word</span>
+          <span class="skill-tag">MS Excel</span>
+          <span class="skill-tag">PowerPoint</span>
+          <span class="skill-tag">Windows 10</span>
+          <span class="skill-tag">Windows 11</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">C Language</span>
+          <span class="skill-tag">Internet Browsing</span>
+          <span class="skill-tag">Email Writing</span>
+          <span class="skill-tag">Google Meet</span>
+          <span class="skill-tag">Zoom</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAL INFORMATION -->
+  <section class="section reveal" id="personal">
+    <div class="section-label">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Personal Information</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="personal-grid">
+      <div class="info-card reveal reveal-delay-1">
+        <div class="info-key">Date of Birth</div>
+        <div class="info-val">26th April 2005</div>
+      </div>
+      <div class="info-card reveal reveal-delay-1">
+        <div class="info-key">Gender</div>
+        <div class="info-val">Male</div>
+      </div>
+      <div class="info-card reveal reveal-delay-2">
+        <div class="info-key">Father's Name</div>
+        <div class="info-val">Rohit</div>
+      </div>
+      <div class="info-card reveal reveal-delay-2">
+        <div class="info-key">Mother's Name</div>
+        <div class="info-val">Anushka</div>
+      </div>
+      <div class="info-card reveal reveal-delay-3">
+        <div class="info-key">Religion</div>
+        <div class="info-val">Jain</div>
+      </div>
+      <div class="info-card reveal reveal-delay-3">
+        <div class="info-key">Languages Known</div>
+        <div class="info-val">English · Hindi · Kannada</div>
+      </div>
+      <div class="info-card wide reveal reveal-delay-4">
+        <div class="info-key">Hobbies</div>
+        <div class="info-val">📚 Reading Books &nbsp;&nbsp;·&nbsp;&nbsp; 🎵 Listening to Music</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DECLARATION -->
+  <section class="section reveal" id="declaration">
+    <div class="section-label">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Declaration</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="declaration-box reveal reveal-delay-1">
+      <p class="declaration-text">I hereby declare that all the information mentioned above is true and correct to the best of my knowledge and belief.</p>
+      <div class="decl-footer">
+        <div class="decl-fields">
+          <div class="decl-field">
+            Place<div class="decl-line"></div>
+          </div>
+          <div class="decl-field">
+            Date<div class="decl-line"></div>
+          </div>
+        </div>
+        <div>
+          <div class="decl-sig">Pratik Mohanty</div>
+          <div class="decl-sig-label">Signature</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Pratik Mohanty &nbsp;·&nbsp; <span>Curriculum Vitae</span> &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; All rights reserved</p>
+</footer>
+
+<script>
+  // ─── THEME TOGGLE ───
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById('themeToggle');
+  const toggleIcon = document.getElementById('toggleIcon');
+
+  const saved = localStorage.getItem('theme') || 'dark';
+  html.setAttribute('data-theme', saved);
+  toggleIcon.textContent = saved === 'dark' ? '🌙' : '☀️';
+
+  toggleBtn.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    toggleIcon.textContent = next === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('theme', next);
+  });
+
+  // ─── HAMBURGER ───
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // ─── SCROLL REVEAL ───
+  const reveals = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Make hero visible immediately
+  document.querySelector('.hero').style.opacity = '1';
+  document.querySelector('.hero').style.transform = 'none';
+</script>
+</body>
+</html>
